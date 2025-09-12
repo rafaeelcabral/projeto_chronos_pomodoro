@@ -1,4 +1,5 @@
-import { Heading } from './components/Heading';
+import { Container } from './components/Container/Container';
+import { Heading } from './components/Heading/Heading';
 import { Timer } from 'lucide-react';
 
 import './styles/theme.css';
@@ -6,33 +7,39 @@ import './styles/global.css';
 
 function App() {
 
-    const nome = 'Rafael';
-    const sobrenome = 'Cabral';
-    const frase = `Ola, ${nome} ${sobrenome}`;
-
     return(
 
         <>
 
-            <Heading> 
-                
-                Olá Mundo 1 !
+            <Container>
+                LOGO
+            </Container>
 
-                <button>
-                    <Timer/>
-                </button>
-                
-            </Heading>
+            <Container>
+                MENU
+            </Container>
 
-            <p>
+            <Container>
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis minus commodi nisi delectus pariatur esse repellendus quaerat neque quo quis. Dolore cupiditate obcaecati tenetur porro doloremque consectetur corrupti asperiores et?
+                <Heading>
 
-                <br/><br/>
+                    TITULO 
+                    
+                    <button>
+                        <Timer/>
+                    </button>
 
-                {frase}
+                </Heading>
 
-            </p>
+            </Container>
+
+            <Container>
+                FORM
+            </Container>
+
+            <Container>
+                FOOTER
+            </Container>
             
         </>
 
