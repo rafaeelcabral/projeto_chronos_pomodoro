@@ -3,4 +3,12 @@
     align-items: center;
     justify-content: center;
     gap: 2.4rem;
+    font-size: 3rem;
+    margin: 1.5rem;
+}
+
+.heading button {
+    background-color: var(--error);
+    color: var(--text-default);
+    cursor: pointer;
 }
