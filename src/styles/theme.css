@@ -1,5 +1,5 @@
 /* Variáveis de Cor para Tema Escuro */
-:root {
+:root[theme='default'] {
   --gray-100: #e6e9f0;
   --gray-200: #cdd3e1;
   --gray-300: #aab3cc;
@@ -35,4 +35,32 @@
 
   --disabled: #555f7d;
   --text-disabled: #aab3cc;
+}
+
+/* Variáveis de Cor para Tema Claro */
+:root[theme='light'] {
+
+  --gray-900: #e6e9f0;
+  --gray-800: #cdd3e1;
+  --gray-700: #aab3cc;
+  --gray-600: #555f7d;
+  --gray-500: #454f6a;
+  --gray-400: #363d56;
+  --gray-300: #272f43;
+  --gray-200: #181f2e;
+  --gray-100: #0a0f1a;
+
+  --primary: #0da170;
+  
+  --success: #22c55e;
+  --warning: #eab308;
+  --error: #991b1b;
+  --info: #0ea5e9;
+
+  --text-default: #0a0f1a;
+  --text-muted: #272f43;
+
+  --link-color: #0b8a60;
+  --link-hover: #065f46;
+
 }

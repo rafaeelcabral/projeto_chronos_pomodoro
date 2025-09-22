@@ -1,4 +1,5 @@
 import { Timer } from 'lucide-react';
+
 import styles from './Logo.module.css';
 
 /*type LogoProps= {

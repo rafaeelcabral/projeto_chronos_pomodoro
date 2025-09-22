@@ -1,4 +1,5 @@
 import { Trash2 } from 'lucide-react';
+
 import styles from './Heading.module.css';
 
 //Tipando a Propriedade do Componente 'props' por causa do Ts
