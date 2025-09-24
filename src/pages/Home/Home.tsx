@@ -3,7 +3,14 @@ import { CountDown } from "../../components/CountDown/CountDown";
 import { MainForm } from "../../components/MainForm/MainForm";
 import { MainTemplate } from "../../templates/MainTemplate/MainTemplate";
 
-function Home() {
+import type { TaskStateModel } from "../../app/models/TaskStateModel";
+
+type HomeProps = {
+    state: TaskStateModel,
+    setState: React.Dispatch<React.SetStateAction<TaskStateModel>>
+};
+
+function Home({state, setState}: HomeProps) {
 
     return (
 
@@ -11,13 +18,13 @@ function Home() {
 
             <Container>
             
-                <CountDown/>
+                <CountDown state={state} setState={setState} />
 
             </Container>
 
             <Container>
             
-                <MainForm/>
+                <MainForm state={state} setState={setState} />
 
             </Container>
 

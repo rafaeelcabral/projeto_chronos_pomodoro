@@ -1,15 +1,18 @@
+import type { TaskStateModel } from '../../app/models/TaskStateModel';
+
 import styles from './CountDown.module.css';
 
-/*type CountDownProps= {
-    children: React.ReactNode; 
-}*/
+type CountDownProps = {
+    state: TaskStateModel,
+    setState: React.Dispatch<React.SetStateAction<TaskStateModel>>
+};
 
-function CountDown(/*props: CountDownProps*/) {
+function CountDown({state}: CountDownProps) {
 
     return ( 
 
         <div className={styles.countDown}>
-            00:00
+            {state.formatedSecondsRemaining}
         </div>
         
     );
