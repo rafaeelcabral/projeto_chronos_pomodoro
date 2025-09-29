@@ -1,6 +1,6 @@
-import { TaskModel } from "./TaskModel";
+import type { TaskModel } from "./TaskModel";
 
-class TaskStateModel {
+type TaskStateModel = {
 
     tasks: TaskModel[];
 
@@ -18,23 +18,6 @@ class TaskStateModel {
         longBreakTime: number;
     };
 
-    //---------------------------------------------------------------
+};
 
-    constructor(
-    tasks: TaskModel[],
-    secondsRemaining: number,
-    formatedSecondsRemaining: string,
-    activeTask: TaskModel | null,
-    currentCycle: number,
-    config = { workTime: 0, shortBreakTime: 0, longBreakTime: 0 }
-    ) {
-        this.tasks = tasks;
-        this.secondsRemaining = secondsRemaining;
-        this.formatedSecondsRemaining = formatedSecondsRemaining;
-        this.activeTask = activeTask;
-        this.currentCycle = currentCycle;
-        this.config = config;
-    }
-}
-
-export { TaskStateModel };
+export type { TaskStateModel };

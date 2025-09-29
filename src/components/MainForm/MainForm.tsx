@@ -3,17 +3,9 @@ import { Cycles } from '../Cycles/Cycles';
 import { DefaultButton } from '../DefautButton/DefaultButton';
 import { PlayCircle } from 'lucide-react';
 
-import type { TaskStateModel } from '../../app/models/TaskStateModel';
-
 import styles from './MainForm.module.css';
 
-
-type MainFormProps = {
-    state: TaskStateModel,
-    setState: React.Dispatch<React.SetStateAction<TaskStateModel>>
-};
-
-function MainForm({state}: MainFormProps) {
+function MainForm() {
 
     return (
    
@@ -33,7 +25,7 @@ function MainForm({state}: MainFormProps) {
 
             <div className={styles.formRow}>
 
-                <p>Nesse ciclo <b>foque</b> por <b> {state.config.workTime} min </b></p>
+                <p> Nesse ciclo <b>foque</b> por <b>25 min.</b> </p>
 
             </div>
 

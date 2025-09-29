@@ -1,18 +1,14 @@
-import type { TaskStateModel } from '../../app/models/TaskStateModel';
-
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import styles from './CountDown.module.css';
 
-type CountDownProps = {
-    state: TaskStateModel,
-    setState: React.Dispatch<React.SetStateAction<TaskStateModel>>
-};
+function CountDown() {
 
-function CountDown({state}: CountDownProps) {
+    const taskContext = useTaskContext();
 
     return ( 
 
         <div className={styles.countDown}>
-            {state.formatedSecondsRemaining}
+            {taskContext.state.formatedSecondsRemaining}
         </div>
         
     );
