@@ -26,7 +26,7 @@ function MainForm() {
     const nextCycleType = getNextCycleType(nextCycle);
     console.log(nextCycleType);
 
-    //FUNÇÃO QUE INICIALIZA UMA TASK (OnSubmit)
+    //FUNÇÃO QUE INICIALIZA UMA NOVA TASK (OnSubmit)
     function handleStartNewTask(event: React.FormEvent<HTMLFormElement>) {
 
         //event => propriedade embutida na minha função pelo próprio navegador por causa do evento
