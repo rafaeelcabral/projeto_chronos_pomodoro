@@ -8,9 +8,9 @@ type TaskModel = {
 
     startDate: number;
 
-    completeDate?: number;   // opcional
+    completeDate: number | null;   
 
-    interruptDate?: number;  // opcional
+    interruptDate: number | null;  
     
     type: 'workTime' | 'shortBreakTime' | 'longBreakTime';
 

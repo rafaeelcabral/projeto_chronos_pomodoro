@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { House, History, Settings, Sun, Moon } from 'lucide-react';
-
 import styles from './Menu.module.css';
 
 type TemasDisponíveis = 'default' | 'light';
@@ -28,7 +27,9 @@ function Menu() {
     //Função chamada no Button para alterar o valor de Theme
     function handleChangeTheme(event: React.MouseEvent<HTMLElement>) {
 
-        event.preventDefault(); //Impede que o link siga a função padrao de ir para outra página (href='#')
+        //event => propriedade embutida na minha função pelo próprio navegador por causa do evento
+        //event.preventDefault() => Impede que o link siga a função padrao de ir para outra página (href='#')
+        event.preventDefault();
 
         setTheme((prevTheme) => {
 

@@ -1,6 +1,6 @@
 import type { TaskStateModel } from "../../app/models/TaskStateModel";
 import { TaskContext } from "./TaskContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type TaskContextProviderProps = {
     children: React.ReactNode;
@@ -19,6 +19,11 @@ const initialState: TaskStateModel = {
 function TaskContextProvider({children}: TaskContextProviderProps) {
 
     const [state, setState] = useState(initialState);
+
+    //Monitorando o 'state' sempre q ele mudar
+    useEffect(() => {
+        console.log(state);
+    }, [state]);
 
     return (
 
