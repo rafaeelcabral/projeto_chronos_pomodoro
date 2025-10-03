@@ -1,6 +1,24 @@
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { getNextCycle } from '../../utils/getNextCycle';
+import { getNextCycleType } from '../../utils/getNextCycleType';
 import styles from './Cycles.module.css';
 
 function Cycles() {
+
+    //Importando TaskContext
+    const taskContext = useTaskContext();
+
+    //Criando um Array Dinâmico preenchido com 'null', cuja o tamanho acompanha a quantidade atual de Ciclos
+    const cycleSteps = Array(taskContext.state.currentCycle).fill(null);
+
+    //Criando Objeto que descreve qual Ciclo a bolinha representa
+    const cycleDescription = {
+        workTime: 'Foco',
+        shortBreakTime: 'Descanso Curto',
+        longBreakTime: 'Descanso Longo'
+    };
+
+    console.log(cycleSteps);
 
     return (
     
@@ -9,18 +27,30 @@ function Cycles() {
             <span> Ciclos: </span>
 
             <div className={styles.cyclePoints}>
+                
+                { 
+                
+                    //Usando .map() pra cada percorrer cada item do Array e Retornar a bolinha de acordo com o Ciclo Atual
+                    //Usando nextCycle e nextCycleType por causa do Índice(index) q começa com '0' na 1ªposição;
+                    cycleSteps.map((_, index) => {
 
-                <span className={`${styles.cyclePoint} ${styles.work}`}></span>
-                <span className={`${styles.cyclePoint} ${styles.shortBreakTime}`}></span>
+                        const nextCycle = getNextCycle(index);
 
-                <span className={`${styles.cyclePoint} ${styles.work}`}></span>
-                <span className={`${styles.cyclePoint} ${styles.shortBreakTime}`}></span>
+                        const nextCycleType = getNextCycleType(nextCycle);
 
-                <span className={`${styles.cyclePoint} ${styles.work}`}></span>
-                <span className={`${styles.cyclePoint} ${styles.shortBreakTime}`}></span>
+                        return (
+                            <span 
+                                key={`${nextCycle}_${nextCycleType}`}
+                                className={`${styles.cyclePoint} ${styles[nextCycleType]}`}
+                                arial-label={`Indicador de Ciclo de ${cycleDescription[nextCycleType]}`}
+                                title={`Indicador de Ciclo de ${cycleDescription[nextCycleType]}`}
+                            >
+                            </span>
+                        );
 
-                <span className={`${styles.cyclePoint} ${styles.work}`}></span>
-                <span className={`${styles.cyclePoint} ${styles.longBreakTime}`}></span>
+                    })
+
+                }
 
             </div>
 

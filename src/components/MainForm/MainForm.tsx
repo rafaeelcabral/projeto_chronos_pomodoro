@@ -112,11 +112,16 @@ function MainForm() {
 
             </div>
 
-            <div className={styles.formRow}>
+            {
+                //Se o Ciclo Atual for maior doq 0, aparece os Ciclos na Tela
+                (taskContext.state.currentCycle > 0) && (
+                    <div className={styles.formRow}>
 
-                <Cycles/>
+                        <Cycles/>
 
-            </div>
+                    </div>
+                )
+            }
 
             <div className={styles.formRow}>
 
