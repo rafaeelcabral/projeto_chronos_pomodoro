@@ -1,18 +1,17 @@
 import type { TaskModel } from '../../app/models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
-import { useRef } from 'react';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
-import { formatedSecondsRemaining } from '../../utils/formatedSecondsRemainig';
+import { useRef } from 'react';
 import { DefaultInput } from '../DefaultInput/DefaultInput';
 import { Cycles } from '../Cycles/Cycles';
 import { DefaultButton } from '../DefautButton/DefaultButton';
-import { PlayCircle } from 'lucide-react';
+import { PlayCircle, StopCircle } from 'lucide-react';
 import styles from './MainForm.module.css';
 
 function MainForm() {
 
-    //Atribuindo o uso do contexto TaskContext a uma variável, permitindo q ela recupere(state) e altere(setState) os valores
+    //Atribuindo o uso do contexto TaskContext a uma variável, permitindo q ela recupere(state) e altere(dispatch) os valores
     const taskContext = useTaskContext();
 
     //Recupera InputText
@@ -22,7 +21,7 @@ function MainForm() {
     const nextCycle = getNextCycle(taskContext.state.currentCycle);
     console.log(nextCycle);
 
-    //Recupera o tipo do próximo Ciclo, passando o próximo Ciclo por parâmetro
+    //Recupera o tipo do próximo Ciclo, passando o valor do próximo Ciclo por parâmetro
     const nextCycleType = getNextCycleType(nextCycle);
     console.log(nextCycleType);
 
@@ -65,27 +64,15 @@ function MainForm() {
         }
 
         //Alterando os valores do Contexto TaskContext por causa da nova Task
-        taskContext.setState((prevState) => {
+        taskContext.dispatch({type: 'START_TASK', payload: newTask});
 
-            return {
+    }
 
-                ... prevState,
+    //FUNÇÃO QUE INTERROMPE UMA TASK (OnClick)
+    function handleInterruptTask() {
 
-                tasks: [... prevState.tasks, newTask],
-
-                secondsRemaining: newTask.duration * 60, //em Segundos
-
-                formatedSecondsRemaining: formatedSecondsRemaining(newTask.duration * 60),
-
-                activeTask: newTask,
-
-                currentCycle: nextCycle, 
-
-                config: {... prevState.config}
-
-            }
-
-        });
+        //Alterando os valores do Contexto TaskContext por causa da interrupção da Task
+        taskContext.dispatch({type: 'INTERRUPT_TASK', payload: taskContext.state.activeTask as TaskModel});
 
     }
 
@@ -102,6 +89,7 @@ function MainForm() {
                     type='text' 
                     placeholder='Ex.: Estudar para a prova'
                     ref={taskName}
+                    disabled={!!taskContext.state.activeTask} // o '!!' transforma o activeTask em 'true' ou 'false'
                 />
 
             </div>
@@ -123,13 +111,47 @@ function MainForm() {
                 )
             }
 
-            <div className={styles.formRow}>
+            {
+                //Se não houver Task ativa, Botão tipo submit para iniciar uma task, se houver, Botão tipo button para parar a Task
+                (taskContext.state.activeTask === null) ? (
 
-                <DefaultButton color='green'>
-                    <PlayCircle/>
-                </DefaultButton>
+                    <div className={styles.formRow}>
 
-            </div>
+                        <DefaultButton 
+                        key='Start New Task Button'
+                        color='green'
+                        type='submit'
+                        arial-label='Iniciar uma nova Tarefa'
+                        title='Iniciar uma nova Tarefa'
+                        >
+
+                            <PlayCircle/>
+
+                        </DefaultButton>
+
+                    </div> 
+
+                ) : (
+
+                    <div className={styles.formRow}>
+
+                        <DefaultButton 
+                        key='Interrupt Task Button'
+                        color='red'
+                        type='button'
+                        onClick={handleInterruptTask}
+                        arial-label='Interromper Tarefa'
+                        title='Interromper Tarefa'
+                        >
+
+                            <StopCircle/>
+
+                        </DefaultButton>
+
+                    </div>     
+
+                )
+            }
 
         </form>
 

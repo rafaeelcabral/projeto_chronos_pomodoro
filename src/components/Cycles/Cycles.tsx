@@ -18,8 +18,6 @@ function Cycles() {
         longBreakTime: 'Descanso Longo'
     };
 
-    console.log(cycleSteps);
-
     return (
     
         <div className={styles.cycleContainer}>

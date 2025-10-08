@@ -1,10 +1,11 @@
 import type { TaskStateModel } from "../../app/models/TaskStateModel";
+import type { TaskActionsType } from "./TaskReducer/taskActionsType";
 import { createContext } from "react";
 
 //Definindo tipo do Contexto
 type TaskContextProps = {
     state: TaskStateModel,
-    setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
+    dispatch: React.Dispatch<TaskActionsType>;
 };
 
 //Definindo valor default pro Contexto
@@ -19,7 +20,7 @@ const initialContext: TaskContextProps = {
         config: {workTime: 0, shortBreakTime: 0, longBreakTime: 0} 
     },
 
-    setState: () => {}
+    dispatch: () => {}
 
 };
 
