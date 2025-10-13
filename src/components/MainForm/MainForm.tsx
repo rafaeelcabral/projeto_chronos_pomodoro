@@ -1,9 +1,10 @@
+import { useRef } from 'react';
 import type { TaskModel } from '../../app/models/TaskModel';
 import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { getNextCycleType } from '../../utils/getNextCycleType';
-import { useRef } from 'react';
 import { DefaultInput } from '../DefaultInput/DefaultInput';
+import { DescriptionTask } from '../DescriptionTask/DescriptionTask';
 import { Cycles } from '../Cycles/Cycles';
 import { DefaultButton } from '../DefautButton/DefaultButton';
 import { PlayCircle, StopCircle } from 'lucide-react';
@@ -96,7 +97,7 @@ function MainForm() {
 
             <div className={styles.formRow}>
 
-                <p> Nesse ciclo <b>foque</b> por <b>25 min.</b> </p>
+                <DescriptionTask nextCycle={nextCycle}/> 
 
             </div>
 
